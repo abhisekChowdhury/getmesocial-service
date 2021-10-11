@@ -1,0 +1,4 @@
+com/example/getmesocialservicedemo/model/User.class
+com/example/getmesocialservicedemo/ServletInitializer.class
+com/example/getmesocialservicedemo/resource/UserResource.class
+com/example/getmesocialservicedemo/GetmesocialServicedemoApplication.class
