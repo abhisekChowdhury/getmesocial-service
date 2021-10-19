@@ -13,29 +13,46 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser(){
-
-        //First we would call User Repository
-        return userRepository.getUser();
-    }
-
     public User saveUser(User user) {
-        return userRepository.saveUser(user);
+        //return userRepository.saveUser(user);
+        return userRepository.save(user);
     }
 
     public List<User> getAllUsers() {
-        return userRepository.getAllUsers();
+        return userRepository.findAll();
     }
 
-    public User getUserById(int userId) {
-        return userRepository.getUserId(userId);
+    public User updateUser(User user) {
+        return userRepository.save(user);
     }
 
-    public User updateUser(int userId, User user) {
-        return userRepository.updateUser(userId, user);
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
     }
 
-    public User deleteUser(int userId) {
-        return userRepository.deleteUser(userId);
+    public List<User> getByAddress(String address) {
+        return userRepository.findAllByAddress(address);
     }
+
+//    public User getUser(){
+//
+//        //First we would call User Repository
+//        return userRepository.findById();
+//    }
+//
+//    public User saveUser(User user) {
+//        return userRepository.saveUser(user);
+//    }
+//
+//    public User getUserById(int userId) {
+//        return userRepository.getUserId(userId);
+//    }
+//
+//    public User updateUser(int userId, User user) {
+//        return userRepository.updateUser(userId, user);
+//    }
+//
+//    public User deleteUser(int userId) {
+//        return userRepository.deleteUser(userId);
+//    }
 }

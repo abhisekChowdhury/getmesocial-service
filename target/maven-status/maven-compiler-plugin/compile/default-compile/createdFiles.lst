@@ -1,6 +1,10 @@
 com/example/getmesocialservicedemo/model/User.class
+com/example/getmesocialservicedemo/model/Album.class
 com/example/getmesocialservicedemo/GetmesocialServicedemoApplication.class
+com/example/getmesocialservicedemo/resource/AlbumResource.class
+com/example/getmesocialservicedemo/service/AlbumService.class
 com/example/getmesocialservicedemo/ServletInitializer.class
 com/example/getmesocialservicedemo/resource/UserResource.class
 com/example/getmesocialservicedemo/service/UserService.class
 com/example/getmesocialservicedemo/repository/UserRepository.class
+com/example/getmesocialservicedemo/repository/AlbumRepository.class
