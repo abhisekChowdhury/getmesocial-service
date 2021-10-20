@@ -30,10 +30,6 @@ public class UserResource {
     public List<User> getByAddress(@RequestParam(name = "address") String address){
         return userService.getByAddress(address);
     }
-//    @GetMapping
-//    public List<User> getByAddress(@RequestParam(name = "address") String address){
-//        return userService.getByAddress(address);
-//    }
 
     @PutMapping
     public User updateUser(@RequestBody User user){
