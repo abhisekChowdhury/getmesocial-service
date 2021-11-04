@@ -5,6 +5,7 @@ import com.example.getmesocialservicedemo.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class PhotoResource {
     }
 
     @PostMapping
-    public Photo savePhoto(Photo photo){
+    public Photo savePhoto(@Valid Photo photo){
         return photoService.savePhoto(photo);
     }
 

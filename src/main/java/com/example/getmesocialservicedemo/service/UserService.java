@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -33,6 +34,19 @@ public class UserService {
     public List<User> getByAddress(String address) {
         return userRepository.findAllByAddress(address);
     }
+
+    public User getById(String userId) {
+        return userRepository.findById(userId).get();
+    }
+
+    public List<User> getByUserName(String name) {
+        return userRepository.findAllByName(name);
+    }
+
+    //For Single User:
+//    public Optional<User> getByUserName(String name) {
+//        return userRepository.findByName(name);
+//    }
 
 //    public User getUser(){
 //

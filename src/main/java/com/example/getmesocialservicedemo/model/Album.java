@@ -1,13 +1,19 @@
 package com.example.getmesocialservicedemo.model;
 
+import com.example.getmesocialservicedemo.validation.ValidLowerAndNumber;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
+
+import javax.validation.constraints.NotEmpty;
 
 public class Album {
 
     @Id
     String albumId;
+    @Length(max = 10)
     String name;
     String coverPicUrl;
+    @NotEmpty @ValidLowerAndNumber
     String createdBy;
     String dateCreated;
 

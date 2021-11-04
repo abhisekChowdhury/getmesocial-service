@@ -1,12 +1,18 @@
 package com.example.getmesocialservicedemo.model;
 
+import com.example.getmesocialservicedemo.validation.ValidLowerAndNumber;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
+
+import javax.validation.constraints.NotEmpty;
 
 public class Comment {
     @Id
     private String commentId;
     private String photoId;
+    @Length(min = 5)
     private String message;
+    @NotEmpty @ValidLowerAndNumber
     private String createdBy;
     private String dateCreated;
 

@@ -1,6 +1,9 @@
 package com.example.getmesocialservicedemo.model;
 
+import com.example.getmesocialservicedemo.validation.ValidLowerAndNumber;
 import org.springframework.data.annotation.Id;
+
+import javax.validation.constraints.NotEmpty;
 
 public class Photo {
 
@@ -8,6 +11,7 @@ public class Photo {
     private String photoId;
     private String albumId;
     private String photoUrl;
+    @NotEmpty @ValidLowerAndNumber
     private String createdBy;
     private String dateCreated;
 

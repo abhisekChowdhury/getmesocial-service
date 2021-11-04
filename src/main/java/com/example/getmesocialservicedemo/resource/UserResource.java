@@ -1,11 +1,14 @@
 package com.example.getmesocialservicedemo.resource;
 
+import com.example.getmesocialservicedemo.exception.RestrictedInfoException;
 import com.example.getmesocialservicedemo.model.User;
 import com.example.getmesocialservicedemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 //THIS IS THE CONTROLLER CLASS
 @RestController
@@ -17,7 +20,7 @@ public class UserResource {
 
     //When we want to post some data
     @PostMapping
-    public User saveUser(@RequestBody User user){
+    public User saveUser(@RequestBody @Valid User user){
         return userService.saveUser(user);
     }
 
@@ -27,8 +30,16 @@ public class UserResource {
     }
 
     @GetMapping("/address")
-    public List<User> getByAddress(@RequestParam(name = "address") String address){
+    public List<User> getByAddress(@RequestParam(name = "address") String address) throws RestrictedInfoException {
+        if(address.equalsIgnoreCase("area51")){
+            throw new RestrictedInfoException();
+        }
         return userService.getByAddress(address);
+    }
+
+    @GetMapping("/find-by-id")
+    public User getById(@RequestParam("userId")String userId){
+        return userService.getById(userId);
     }
 
     @PutMapping
@@ -40,6 +51,20 @@ public class UserResource {
     public void deleteUser(@RequestParam(name="userId") String userId){
         userService.deleteUser(userId);
     }
+
+    @GetMapping("/name")
+    public List<User> getByUserName(@RequestParam(name="name") String name) throws RestrictedInfoException{
+        if (name.equalsIgnoreCase("root")){
+            throw new RestrictedInfoException();
+        }
+        return userService.getByUserName(name);
+    }
+
+    //For Single User
+//    @GetMapping("/userName")
+//    public Optional<User> getByUserName(@RequestParam(name = "name") String name){
+//        return userService.getByUserName(name);
+//    }
 
 //    @GetMapping
 //    public User getUser() {
