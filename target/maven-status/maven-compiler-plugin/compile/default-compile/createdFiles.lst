@@ -6,7 +6,9 @@ com/example/getmesocialservicedemo/service/CommentService.class
 com/example/getmesocialservicedemo/service/AlbumService.class
 com/example/getmesocialservicedemo/exception/GlobalExceptionHandler.class
 com/example/getmesocialservicedemo/resource/UserResource.class
+com/example/getmesocialservicedemo/resource/FileResource.class
 com/example/getmesocialservicedemo/resource/AlbumResource.class
+com/example/getmesocialservicedemo/service/FileService.class
 com/example/getmesocialservicedemo/exception/RestrictedInfoException.class
 com/example/getmesocialservicedemo/ServletInitializer.class
 com/example/getmesocialservicedemo/service/PhotoService.class
