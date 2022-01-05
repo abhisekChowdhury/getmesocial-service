@@ -8,4 +8,6 @@ Consists of features such as
 4. Deleting Albums
 5. etc.
 
+Documentation for APIs -> http://18.116.86.172:8080/swagger-ui.html#/
+
 Partially used in 'BookStore Application' -> https://github.com/abhisekChowdhury/bookstore
