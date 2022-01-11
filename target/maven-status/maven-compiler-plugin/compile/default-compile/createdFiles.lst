@@ -1,4 +1,5 @@
 com/example/getmesocialservicedemo/resource/PhotoResource.class
+com/example/getmesocialservicedemo/config/FirebaseConfig.class
 com/example/getmesocialservicedemo/model/Album.class
 com/example/getmesocialservicedemo/GetmesocialServicedemoApplication.class
 com/example/getmesocialservicedemo/model/Comment.class
@@ -6,16 +7,19 @@ com/example/getmesocialservicedemo/service/CommentService.class
 com/example/getmesocialservicedemo/service/AlbumService.class
 com/example/getmesocialservicedemo/exception/GlobalExceptionHandler.class
 com/example/getmesocialservicedemo/resource/UserResource.class
+com/example/getmesocialservicedemo/service/FirebaseService.class
 com/example/getmesocialservicedemo/resource/FileResource.class
 com/example/getmesocialservicedemo/resource/AlbumResource.class
 com/example/getmesocialservicedemo/service/FileService.class
 com/example/getmesocialservicedemo/exception/RestrictedInfoException.class
 com/example/getmesocialservicedemo/ServletInitializer.class
 com/example/getmesocialservicedemo/service/PhotoService.class
+com/example/getmesocialservicedemo/model/FirebaseUser.class
 com/example/getmesocialservicedemo/service/UserService.class
 com/example/getmesocialservicedemo/validation/ValidNameValidator.class
 com/example/getmesocialservicedemo/model/User.class
 com/example/getmesocialservicedemo/validation/ValidLowerAndNumber.class
+com/example/getmesocialservicedemo/config/CORSFilter.class
 com/example/getmesocialservicedemo/resource/CommentResource.class
 com/example/getmesocialservicedemo/repository/PhotoRepository.class
 com/example/getmesocialservicedemo/model/Photo.class

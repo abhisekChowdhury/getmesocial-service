@@ -1,12 +1,16 @@
 package com.example.getmesocialservicedemo.resource;
 
 import com.example.getmesocialservicedemo.exception.RestrictedInfoException;
+import com.example.getmesocialservicedemo.model.FirebaseUser;
 import com.example.getmesocialservicedemo.model.User;
+import com.example.getmesocialservicedemo.service.FirebaseService;
 import com.example.getmesocialservicedemo.service.UserService;
+import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +22,18 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private FirebaseService firebaseService;
+
     //When we want to post some data
     @PostMapping
-    public User saveUser(@RequestBody @Valid User user){
-        return userService.saveUser(user);
+    public User saveUser(@RequestBody @Valid User user, @RequestHeader(name = "idToken") String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser != null){
+            return userService.saveUser(user);
+        }else{
+            return null;
+        }
     }
 
     @GetMapping

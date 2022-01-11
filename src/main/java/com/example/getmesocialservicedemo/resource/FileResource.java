@@ -1,6 +1,5 @@
 package com.example.getmesocialservicedemo.resource;
 
-import com.amazonaws.services.kafka.model.S3;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.S3Object;
 import com.example.getmesocialservicedemo.service.FileService;
