@@ -1,12 +1,16 @@
 package com.example.getmesocialservicedemo.resource;
 
 import com.example.getmesocialservicedemo.model.Album;
+import com.example.getmesocialservicedemo.model.FirebaseUser;
 import com.example.getmesocialservicedemo.model.User;
 import com.example.getmesocialservicedemo.service.AlbumService;
+import com.example.getmesocialservicedemo.service.FirebaseService;
+import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +21,16 @@ public class AlbumResource {
     @Autowired
     private AlbumService albumService;
 
+    @Autowired
+    private FirebaseService firebaseService;
+
     @PostMapping
-    public Album saveAlbum(@RequestBody @Valid Album album){
-        return albumService.saveAlbum(album);
+    public Album saveAlbum(@RequestBody @Valid Album album, @RequestHeader(name = "idToken")String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser!=null) {
+            return albumService.saveAlbum(album);
+        }
+        return null;
     }
 
     @GetMapping
@@ -33,13 +44,20 @@ public class AlbumResource {
     }
 
     @PutMapping
-    public Album updateAlbum(@RequestBody Album album){
-        return albumService.updateAlbum(album);
+    public Album updateAlbum(@RequestBody Album album, @RequestHeader(name = "idToken")String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser!=null) {
+            return albumService.updateAlbum(album);
+        }
+        return null;
     }
 
     @DeleteMapping
-    public void deleteAlbum(@RequestParam(name="albumId")String albumId){
-        albumService.deleteAlbum(albumId);
+    public void deleteAlbum(@RequestParam(name="albumId")String albumId, @RequestHeader(name = "idToken")String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser!=null) {
+            albumService.deleteAlbum(albumId);
+        }
     }
 
     //Needs work

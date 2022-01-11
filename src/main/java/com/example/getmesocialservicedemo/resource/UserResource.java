@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 //THIS IS THE CONTROLLER CLASS
 @RestController
@@ -55,21 +54,32 @@ public class UserResource {
     }
 
     @PutMapping
-    public User updateUser(@RequestBody User user){
-        return userService.updateUser(user);
+    public User updateUser(@RequestBody User user, @RequestHeader(name = "idToken") String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser!=null) {
+            return userService.updateUser(user);
+        }
+        return null;
     }
 
     @DeleteMapping
-    public void deleteUser(@RequestParam(name="userId") String userId){
-        userService.deleteUser(userId);
+    public void deleteUser(@RequestParam(name="userId") String userId, @RequestHeader(name = "idToken") String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser!=null) {
+            userService.deleteUser(userId);
+        }
     }
 
     @GetMapping("/name")
-    public List<User> getByUserName(@RequestParam(name="name") String name) throws RestrictedInfoException{
-        if (name.equalsIgnoreCase("root")){
-            throw new RestrictedInfoException();
+    public List<User> getByUserName(@RequestParam(name="name") String name, @RequestHeader(name = "idToken")String idToken) throws RestrictedInfoException, IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser!=null) {
+            if (name.equalsIgnoreCase("root")) {
+                throw new RestrictedInfoException();
+            }
+            return userService.getByUserName(name);
         }
-        return userService.getByUserName(name);
+        return null;
     }
 
     //For Single User
